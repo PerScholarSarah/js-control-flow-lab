@@ -1,5 +1,4 @@
 const pi = 3.14159;
-const initialPlantCount = 20;
 const radius = 5;
 const minSpacePerPlant = 0.8;
 const growthRate = 2;
@@ -7,22 +6,30 @@ const growthRate = 2;
 const area = pi * radius * radius;
 const maxPlants = area / minSpacePerPlant;
 
-const predictGrowth = (weeks) =>{
+const predictGrowth = (initialPlantCount, weeks) =>{
     let plants = initialPlantCount;
     for (let t = 0; t < weeks; t++) {
         plants *= growthRate;
     }
+    console.log(`There will be ${plants} after ${weeks}. Plants should be:`);
     if(plants > 0.8 * maxPlants){
-        return "Pruned";
+        console.log("Pruned");
     }
     else if(plants >= 0.5 * maxPlants){
-        return "Monitored";
+        console.log("Monitored");
     }
     else{
-        return "Planted"
+       console.log("Planted");
     }
+    return plants;
 }
 
-console.log(predictGrowth(1));
-console.log(predictGrowth(2));
-console.log(predictGrowth(3));
+predictGrowth(20, 1);
+predictGrowth(20, 2);
+predictGrowth(20, 3);
+
+// -------------------Part 2-------------------
+
+let neededSpace = predictGrowth(100, 10);
+let newRadius = Math.sqrt(neededSpace/pi);
+console.log(object);
